@@ -13,6 +13,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('/submit', 'URLControl@store')->name('store');
-Route::get('/', 'URLControl@index')->with('result', $result);
+Route::post('/submit', 'URLControl@store', compact('result'))->name('store');
+Route::get('/', 'URLControl@index', compact('result'));
 
