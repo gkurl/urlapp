@@ -65,7 +65,11 @@ div#error {
     -ms-transition: 0.8s ease-out;
     -o-transition: 0.8s ease-out;
     transition: 0.8s ease-out;
-
+    max-width: 50%;
+    margin-left: 13rem;
+    margin-right: 5rem;
+    position:relative;
+    left:10rem;
 
 }
 
@@ -104,13 +108,15 @@ div#error .closealert {
 }
 
 .animated {
-    -webkit-animation-duration: 4s;
-    animation-duration: 4s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
     -webkit-animation-fill-mode: both;
     -moz-animation-fill-mode: both;
     -o-animation-fill-mode: both;
     animation-fill-mode: both;
 }
+
+/* ANIMATIONS */
 
 @-webkit-keyframes fadeIn {
     0% {opacity: 0;}
@@ -123,10 +129,22 @@ div#error .closealert {
 }
 
 .fadeIn {
-    -webkit-webkit-animation-name: fadeIn;
-    -moz-webkit-animation-name: fadeIn;
-    -ms-webkit-animation-name: fadeIn;
-    -o-webkit-animation-name: fadeIn;
-    -khtml-webkit-animation-name: fadeIn;
-    webkit-animation-name: fadeIn;
+    -webkit-animation-name: fadeIn;
+    -moz-animation-name: fadeIn;
+    -o-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+/* MEDIA QUERIES */
+
+@media all and (max-width: 320px){
+
+    div#error{
+        max-width: 100%;
+        position: relative;
+        left: 5rem;
+        margin-left: -5rem;
+        padding-right: 2rem;
+    }
+
 }
