@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Link;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Psy\Util\Str;
 
 
@@ -22,6 +24,7 @@ class URLControl extends Controller
     public function index()
     {
 
+       //DB Check
         $dbcheck = (DB::connection()->getDatabaseName());
 
         if (DB::connection()->getDatabaseName()){
@@ -35,6 +38,8 @@ class URLControl extends Controller
             return response(404);
 
         }
+
+
     }
 
     //will handle form submissions from HTML form in short.blade.php
@@ -44,13 +49,31 @@ class URLControl extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     *  /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return string
      */
-    public function create()
+
+    public function create(Request $request, $hash)
     {
+
+        $actual_url = htmlspecialchars("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+
+
+        if(strpos($actual_url, $hash)){
+
+            $original_url = DB::table('links')->select('url')->where('hash', '=', $hash)->first();
+
+            return redirect('/')->withInput()->with('original_url', $original_url->url);
+
+        }
 
 
 
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -106,6 +129,9 @@ class URLControl extends Controller
 
     }
 
+
+    //Function for URL redirection
+
     /**
      * Display the specified resource.
      *
@@ -114,7 +140,9 @@ class URLControl extends Controller
      */
     public function show($id)
     {
-        //
+
+
+
     }
 
     /**

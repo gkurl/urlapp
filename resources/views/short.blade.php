@@ -6,12 +6,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>URL Shortner</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="icon" type="image/png" href=""/>
 </head>
 <body>
 
+{{--@if(Session::has('original_url'))
+    {{redirect('http://')}}
+@endif--}}
 
 <div id="container">
     <div id="wrapper">
@@ -34,9 +37,48 @@
                 <input class="btn btn-primary" type="submit" name="submit" onclick="">
     </form>
             </div>
+        {{--@if(\Illuminate\Support\Facades\Session::has('url'))
+        <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Your URL
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">{{\URL::current()}}/{{\Illuminate\Support\Facades\Session::get('url')}}</a>
+            </div>
         </div>
-    </div>
+        @endif--}}
+@if(\Illuminate\Support\Facades\Session::has('url'))
+    <h2 class="animated fadeIn">Your shortened URL is here!</h2>
+        <form class="animated fadeIn">
+            <div class="input-group">
+                <input type="text" class="form-control"
+                       value="{{\URL::current()}}/{{Session::get('url')}}" placeholder="URL" id="copy-input">
+                <span class="input-group-btn">
+      <button class="btn btn-default" type="button" id="copy-button"
+              data-toggle="tooltip" data-placement="button"
+              title="Copy to Clipboard">
+        Copy
+      </button>
+    </span>
+            </div>
+        </form>
+@endif
 
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{asset('js/transition.js')}}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{{asset('js/copyfunc.js')}}"></script>
+
+
+
+
+
+
 </body>
 </html>
