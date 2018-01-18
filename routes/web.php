@@ -13,6 +13,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('/submit', 'URLControl@store', compact('result'))->name('store');
-Route::get('/', 'URLControl@index', compact('result'));
+Route::get('/', 'URLControl@index');
+Route::post('/submit', 'URLControl@store')->name('store');
+Route::get('/{hash}', 'URLControl@create', function($hash){});
+
+
 

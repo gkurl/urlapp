@@ -12,6 +12,9 @@
 </head>
 <body>
 
+{{--@if(Session::has('original_url'))
+    {{redirect('http://')}}
+@endif--}}
 
 <div id="container">
     <div id="wrapper">
@@ -49,7 +52,7 @@
         <form class="animated fadeIn">
             <div class="input-group">
                 <input type="text" class="form-control"
-                       value="{{\URL::current()}}/{{\Illuminate\Support\Facades\Session::get('url')}}" placeholder="URL" id="copy-input">
+                       value="{{\URL::current()}}/{{Session::get('url')}}" placeholder="URL" id="copy-input">
                 <span class="input-group-btn">
       <button class="btn btn-default" type="button" id="copy-button"
               data-toggle="tooltip" data-placement="button"
@@ -60,6 +63,8 @@
             </div>
         </form>
 @endif
+
+
     </div>
 </div>
 
