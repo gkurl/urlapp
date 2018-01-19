@@ -56,7 +56,7 @@ class URLControl extends Controller
      * @return string
      */
 
-    public function create(Request $request, $hash)
+    public function create($hash)
     {
 
         $actual_url = htmlspecialchars("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
@@ -66,7 +66,7 @@ class URLControl extends Controller
 
             $original_url = DB::table('links')->select('url')->where('hash', '=', $hash)->first();
 
-            return redirect('/')->withInput()->with('original_url', $original_url->url);
+            return redirect($original_url->url);
 
         }
 
