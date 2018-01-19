@@ -13,7 +13,7 @@
 <body>
 
 {{--@if(Session::has('original_url'))
-    {{redirect('http://')}}
+    {{redirect('original_url')}}
 @endif--}}
 
 <div id="container">

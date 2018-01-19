@@ -13,6 +13,7 @@
 <body>
 
 
+
 <div id="container">
     <div id="wrapper">
 
@@ -52,10 +53,6 @@
         </form>
 <?php endif; ?>
 
-        <?php if(Session::has('original_url')): ?>
-            <?php echo e(redirect('http://')); ?>
-
-            <?php endif; ?>
 
     </div>
 </div>
